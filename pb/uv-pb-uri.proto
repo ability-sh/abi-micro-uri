@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option go_package = "./;pb";
+
+package uri;
+
+message GetTask {
+	string key = 1;
+}
+
+message GetResult {
+	int32 errno = 1;
+	string errmsg = 2;
+
+	string uri = 3;
+}
+
+message SetTask {
+	string uri = 1;
+}
+
+message SetResult {
+	int32 errno = 1;
+	string errmsg = 2;
+
+	string key = 3;
+}
+
+service Service {
+	/**
+	 * 获取URI
+	 */
+	rpc Get (GetTask) returns (GetResult);
+
+	/**
+	 * 设置URI
+	 */
+	rpc Set (SetTask) returns (SetResult);
+
+}
+
